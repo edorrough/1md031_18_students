@@ -1,9 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>DELI-VERY</title>
+        <title>Order Hamburgers Online</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-        <h1>Hello World!!!</h1>
+    <main>
+        <header>
+            <img src="img/header.jpg">
+            <h1>Satisfactory Burgers</h1>
+        </header>
+
+        <section id="selection" class="selection">
+            <h2>Select Burger</h2>
+            <p>This is where you execute burger selection</p>
+            <table>
+                <thead align="center">
+                <tr>
+                    <td><h3>Regular Burger</h3></td>
+                    <td><h3>Exciting Burger</h3></td>
+                    <td><h3>Fun-Free Burger</h3></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr align="center">
+                    <td><img src="img/burger1.jpg" height="150"></td>
+                    <td><img src="img/burger2.jpg" height="150"></td>
+                    <td><img src="img/burger3.jpg" height="150"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>750 kCal</li>
+                            <li>100% USDA beef</li>
+                            <li>Two buns, some gubbinz, and some meat (contains gluten)</li>
+                            <li>Plenty of condiments to satisfy your taste buds (contains lactose)</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>1500 kCal</li>
+                            <li>9001% USDA super-beef</li>
+                            <li>Artery-clogging and intestinal-cramping goodness (contains gluten)</li>
+                            <li>Each burger takes 1 week off of your life expectancy (contains lactose)</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>300 kCal</li>
+                            <li>It's a burger, technically</li>
+                            <li>Plant beef patty served without enthusiasm (vegan)</li>
+                            <li>Why is it so small? (gluten and lactose free)</li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </section>
+        <section id="customer" class="customer">
+            <h2>Customer Information</h2>
+            <p>This is where you provide necessary information</p>
+        </section>
+        <section id="delivery" class="delivery">
+            <h2>Delivery Information</h2>
+            <form>
+                <p>
+                    <label for="fullname">First and last name</label><br />
+                    <input type="text" id="fullname" name="fn" required="required" placeholder="Full name">
+                </p>
+                <p>
+                    <label for="email">Email address</label><br />
+                    <input type="email" id="email" name="em" required="required" placeholder="Email">
+                </p>
+                <p>
+                    <label for="street">Street</label><br />
+                    <input type="text" id="street" name="st" required="required" placeholder="Street">
+                </p>
+                <p>
+                    <label for="house">House number</label><br />
+                    <input type="number" id="house" name="ho" required="required" placeholder="House">
+                </p>
+                <p>
+                    <label for="payment">Payment</label><br>
+                    <select id="payment" name="pay">
+                        <option>Credit card</option>
+                        <option selected="selected">Swish</option>
+                        <option>Paypal</option>
+                        <option>Cash</option>
+                    </select>
+                </p>
+                Gender
+                <p>
+                    <input type="radio" id="male" name="ge" required="required" placeholder="Male">
+                    <label for="male">Male</label><br />
+                    <input type="radio" id="female" name="ge" required="required" placeholder="Female">
+                    <label for="female">Female</label><br />
+                    <input type="radio" id="nogender" name="ge" required="required" placeholder="None" checked="checked">
+                    <label for="nogender">I prefer not to provide gender information</label><br />
+                </p>
+                <!--button id="reset" type="reset">Reset order</button-->
+            </form>
+        </section>
+
+        <button id="sendbutton" type="submit"><img src="img/sendit.png" height="20"valign="justify"> Send it!</button>
+
+    </main>
+    <footer>
+        <hr>
+        &copy; 2019 Imaginary Burgers LLC &reg;
+    </footer>
     </body>
 </html>
