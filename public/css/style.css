@@ -1,0 +1,73 @@
+#header {
+    margin: 0.1% 1%;
+    overflow: hidden;
+}
+
+#header h1 {
+    position: absolute;
+    padding-left: 25vw;
+    padding-right: 25vw;
+    padding-top: 15vh;
+    font-size: 5em;
+    text-align: center;
+    margin-top: -60%;
+}
+
+#headerimg {
+    opacity: 0.7;
+    width: 100%;
+    height: auto;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 1.5vw;
+}
+
+.allergies {
+    font-weight: bold;
+}
+
+#selection {
+    color: white;
+    background-color: black;
+    border: 3px dashed white;
+}
+
+#delivery {
+    border: 3px dashed black;
+}
+
+button:hover {
+    background-color: deepskyblue;
+    cursor: pointer;
+}
+
+#sendbutton {
+    margin-left: 2%;
+    margin-bottom: 1%;
+    margin-top: 2%;
+}
+
+#table {
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-row-gap: 0.5vh;
+    grid-column-gap: 0.1vw;
+    grid-template-columns: 33vw 33vw 33vw;
+}
+#burgerTextList {
+    text-align: left;
+}
+
+#flavortext {
+    text-align: left;
+}
+
+section {
+    margin: 0.1% 1%;
+    padding: 0.5% 2%;
+}

@@ -1,115 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Order Hamburgers Online</title>
+        <title>Hamburgers Online</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" href="css/deli-very.css">
+        <script type="text/javascript" src="js/menu.js"></script>
+        <script src="/socket.io/socket.io.js" defer></script>
+        <script src="https://vuejs.org/js/vue.js" defer></script>
+        <script src="js/js_script.js" defer></script>
+        <script src="js/vue_script.js" defer></script>
+        <script src="/vue/vue.js" defer></script>
     </head>
+
     <body>
-    <main>
-        <header>
-            <img src="img/header.jpg">
+
+        <header id="header">
+            <img src="img/header.jpg" id="headerimg">
             <h1>Satisfactory Burgers</h1>
         </header>
 
+    <main id="myburgers">
         <section id="selection" class="selection">
             <h2>Select Burger</h2>
             <p>This is where you execute burger selection</p>
-            <table>
-                <thead align="center">
-                <tr>
-                    <td><h3>Regular Burger</h3></td>
-                    <td><h3>Exciting Burger</h3></td>
-                    <td><h3>Fun-Free Burger</h3></td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr align="center">
-                    <td><img src="img/burger1.jpg" height="150"></td>
-                    <td><img src="img/burger2.jpg" height="150"></td>
-                    <td><img src="img/burger3.jpg" height="150"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <ul>
-                            <li>750 kCal</li>
-                            <li>100% USDA beef</li>
-                            <li>Two buns, some gubbinz, and some meat (contains gluten)</li>
-                            <li>Plenty of condiments to satisfy your taste buds (contains lactose)</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>1500 kCal</li>
-                            <li>9001% USDA super-beef</li>
-                            <li>Artery-clogging and intestinal-cramping goodness (contains gluten)</li>
-                            <li>Each burger takes 1 week off of your life expectancy (contains lactose)</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>300 kCal</li>
-                            <li>It's a burger, technically</li>
-                            <li>Plant beef patty served without enthusiasm (vegan)</li>
-                            <li>Why is it so small? (gluten and lactose free)</li>
-                        </ul>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
+            <div id="grid" class="grid">
+                <div v-for="burger in burgers" align="center">
+                    <h3>{{burger.name}}</h3>
+                    <img v-bind:src="burger.image" title=burger.name width = "250" height="auto">
+                    <div>
+                        <label for=burger.name>Add to order: </label>
+                        <input id="burger.name" v-bind:value=burger.name type="checkbox" v-model="chosenBurger">
+                    </div>
+                    <ul id="burgerTextList">
+                        <li>{{burger.description}}</li>
+                        <li>{{burger.calories}} kCal</li>
+                        <li><span v-for="ingredients in burger.ingredients">{{ingredients}}, </span></li>
+                        <li v-if="burger.gluten"><span class="allergies">Contains gluten</span></li>
+                        <li v-if="burger.lactose"><span class="allergies">Contains lactose</span></li>
+                        <li>{{burger.price}} Kr</li>
+                    </ul>
+                </div>
+            </div>
         </section>
-        <section id="customer" class="customer">
+        <!--section id="customer" class="customer">
+        </section-->
+        <section id="delivery" class="delivery">
             <h2>Customer Information</h2>
             <p>This is where you provide necessary information</p>
-        </section>
-        <section id="delivery" class="delivery">
             <h2>Delivery Information</h2>
             <form>
                 <p>
                     <label for="fullname">First and last name</label><br />
-                    <input type="text" id="fullname" name="fn" required="required" placeholder="Full name">
+                    <input type="text" id="fullname" name="name" required="required" placeholder="Full name" v-model="name">
                 </p>
                 <p>
                     <label for="email">Email address</label><br />
-                    <input type="email" id="email" name="em" required="required" placeholder="Email">
+                    <input type="email" id="email" name="mail" required="required" placeholder="Email" v-model="mail">
                 </p>
-                <p>
+                <!--<p>
                     <label for="street">Street</label><br />
                     <input type="text" id="street" name="st" required="required" placeholder="Street">
                 </p>
                 <p>
                     <label for="house">House number</label><br />
                     <input type="number" id="house" name="ho" required="required" placeholder="House">
-                </p>
+                </p>-->
                 <p>
                     <label for="payment">Payment</label><br>
-                    <select id="payment" name="pay">
-                        <option>Credit card</option>
+                    <select id="payment" name="pay" v-model ="pay">
+                        <option>Visa</option>
                         <option selected="selected">Swish</option>
                         <option>Paypal</option>
-                        <option>Cash</option>
+                        <option>Mastercard</option>
                     </select>
                 </p>
                 Gender
                 <p>
-                    <input type="radio" id="male" name="ge" required="required" placeholder="Male">
+                    <input type="radio" value="Male" id="male" name="gender" required="required" placeholder="Male" v-model ="gender">
                     <label for="male">Male</label><br />
-                    <input type="radio" id="female" name="ge" required="required" placeholder="Female">
+                    <input type="radio" value="Female" id="female" name="gender" required="required" placeholder="Female" v-model ="gender">
                     <label for="female">Female</label><br />
-                    <input type="radio" id="nogender" name="ge" required="required" placeholder="None" checked="checked">
+                    <input type="radio" value="Unspecified Gender" id="nogender" name="gender" required="required" placeholder="Unspecified" v-model ="gender" checked="checked">
                     <label for="nogender">I prefer not to provide gender information</label><br />
                 </p>
                 <!--button id="reset" type="reset">Reset order</button-->
             </form>
+
+            <h1> Click in the map! </h1>
+            <a href="/dispatcher" target="_blank">Open dispatcher in new window</a>.
+            <div class="view-box">
+                <div id="dots" v-on:click="displayOrder">
+                    <div v-bind:style="{ left: x + 'px', top: y + 'px'}">T</div>
+                </div>
+            </div>
+
         </section>
+        <button id="sendbutton" type="submit" v-on:click="addOrder"><img src="img/sendit.png" height="20" align="justify"> Send it!</button>
 
-        <button id="sendbutton" type="submit"><img src="img/sendit.png" height="20"valign="justify"> Send it!</button>
-
+        <section id="confirmation">
+            <h2> Order confirmation</h2>
+            <h3> Customer details </h3>
+            <div id="customerInfo">
+                <dl>
+                    <dt>Name: {{name}}</dt>
+                    <dt>Gender: {{gender}}</dt>
+                    <dt>E-mail: {{mail}}</dt>
+                    <dt>Payment method: {{pay}}</dt>
+                    <!--<dt>Deliver to: {{details.x}}</dt>-->
+                </dl>
+            </div>
+            <h3> Order summary </h3>
+            <div id="orderItems">
+                <ul>
+                    <li v-for="item in chosenBurger">{{item}}</li>
+                </ul>
+                <!--<p class="orderedItems" v-bind="orderList">
+                    {{orderList}}
+                </p>-->
+            </div>
+        </section>
     </main>
+
     <footer>
         <hr>
         &copy; 2019 Imaginary Burgers LLC &reg;
     </footer>
+
     </body>
 </html>
